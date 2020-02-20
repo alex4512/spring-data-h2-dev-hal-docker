@@ -1,0 +1,18 @@
+
+server:
+  port: 8091
+  servlet:
+    context-path: /Validator
+spring:
+  application:
+    name: HelloDemo
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+logging.level.org.springframework.web: DEBUG
+
+
+
+
