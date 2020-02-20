@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -24,17 +25,17 @@ public class InvoiceLine {
 	
 	@Id
 	@Column(name="lineNum")
-	Integer lineNum;
+	long lineNum;
 	String orderNum;
 	BigDecimal netAmt;
 	BigDecimal totAmt;
 	String description;
 	String glAccount;
 	
-	
+	@JsonBackReference
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="docid")
-	private Invoice invoice;
+	public Invoice invoice;
 	
 	public BigDecimal getNetAmt() {
 		return netAmt;
@@ -86,7 +87,7 @@ public class InvoiceLine {
 		this.orderNum = orderNum;
 	}
 	
-	public Integer getLineNum() {
+	public long getLineNum() {
 		return lineNum;
 	}
 	public void setLineNum(Integer lineNum) {

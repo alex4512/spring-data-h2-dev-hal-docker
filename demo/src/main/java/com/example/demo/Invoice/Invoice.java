@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonIgnoreProperties
 @Entity
@@ -26,7 +28,8 @@ public class Invoice {
 	BigDecimal netAmt;
 	BigDecimal totAmt;
 
-	@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
 	List<InvoiceLine> invoiceLines = new ArrayList<>();
 
 	public long getDocid() {
