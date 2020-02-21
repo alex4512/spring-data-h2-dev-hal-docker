@@ -27,7 +27,10 @@ public class Invoice {
 	String documentNumber;
 	BigDecimal netAmt;
 	BigDecimal totAmt;
-
+	String approver;
+	
+	
+	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
 	List<InvoiceLine> invoiceLines = new ArrayList<>();
@@ -64,13 +67,6 @@ public class Invoice {
 		this.totAmt = totAmt;
 	}
 
-	public Invoice(long docid, String documentNumber, BigDecimal netAmt, BigDecimal totAmt) {
-		this.docid = docid;
-		this.documentNumber = documentNumber;
-		this.netAmt = netAmt;
-		this.totAmt = totAmt;
-	}
-
 	public Invoice() {
 		System.out.println("Invoice::default constructor");
 	}
@@ -87,6 +83,14 @@ public class Invoice {
 
 	public void setInvoiceLines(List<InvoiceLine> invoiceLines) {
 		this.invoiceLines = invoiceLines;
+	}
+
+	public String getApprover() {
+		return approver;
+	}
+
+	public void setApprover(String approver) {
+		this.approver = approver;
 	}
 
 
