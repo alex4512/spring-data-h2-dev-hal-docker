@@ -30,4 +30,10 @@ public class DemoApplication{
 		}
 		return "Hello " + name;
 	}
+	
+	@GetMapping("/")
+	public String forwardToHello()
+	{
+		return this.sayHello(null);
+	}
 }

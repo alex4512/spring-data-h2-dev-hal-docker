@@ -1,10 +1,9 @@
 package com.example.demo.Validator;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +21,6 @@ import com.example.demo.approvalmatrix.ApprovalMatrix;
 @RestController
 @RequestMapping("/v2")
 public class ValidatorResource {
-
 	@Autowired
 	InvoiceJPARepository repository;
 
@@ -58,7 +56,7 @@ public class ValidatorResource {
 		} else {
 
 			// String retMsgBody = service.validate(invoice);
-			String url = "http://localhost:8092/Validator/matrix/findByCoder";
+			String url = "http://localhost:8091/Validator/matrix/findByCoder";
 			/*
 			 * restTemplate = new RestTemplate(); headers = new HttpHeaders();
 			 * headers.setContentType(MediaType.APPLICATION_JSON);
