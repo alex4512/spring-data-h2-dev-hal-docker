@@ -25,6 +25,7 @@ pipeline {
         stage('Run') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
+				args '-p 8091:8091 -p 5000:5000'
             }
         }
     }
