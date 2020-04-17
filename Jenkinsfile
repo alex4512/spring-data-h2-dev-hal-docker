@@ -1,20 +1,18 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+			args '-p 8091:8091 -p 8092:8092 -p 5000:5000'
         }
-    }
-	options {
-        skipStagesAfterUnstable()
     }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-		stage('Test') {
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -24,17 +22,7 @@ pipeline {
                 }
             }
         }
-		stage('Install') {
-            steps {
-                sh 'mvn install'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-		stage('Run') {
+        stage('Run') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
