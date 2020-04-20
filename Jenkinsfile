@@ -3,7 +3,7 @@ pipeline {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
-			args '-p 8091:8091 -p 8092:8092 -p 50000:50000'
+			
         }
     }
     stages {
