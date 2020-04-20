@@ -15,11 +15,7 @@ pipeline {
 
     stage('Run') {
       steps {
-        dockerNode(image: 'openjdk:8-jdk-alpine') {
-          sh 'java -version'
-	  sh 'ls -a'
-        }
-
+         sh 'ls -a'
       }
     }
 
