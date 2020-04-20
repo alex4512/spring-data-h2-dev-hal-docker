@@ -1,19 +1,3 @@
-Pipelines
-Executors
-Administration
-Logout
-Cancel
-Clean & BuildRunStart
-Pipeline Settings
-Agent
-docker
-Image*
-maven:3-alpine
-Args
--v $HOME/.m2:/root/.m2
-Environment
-Name	Value	
-Pipeline Script
 pipeline {
   agent {
     docker {
