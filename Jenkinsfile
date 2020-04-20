@@ -2,7 +2,8 @@ pipeline {
     agent {
     docker {
         image 'maven:3-alpine'
-         args '-v $HOME/.m2:/root/.m2'      
+         args '-v $HOME/.m2:/root/.m2'
+	 image 'openjdk:8-jdk-alpine'
         }
     }
 	stages
@@ -18,7 +19,7 @@ pipeline {
 			}
 		}
 		stage('Deploy to test')	{
-			agent { docker 'openjdk:8-jdk-alpine' }		
+	
 			steps {
 				sh 'java -version'
 				sh 'ls -a'
