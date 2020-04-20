@@ -9,18 +9,20 @@ pipeline {
 	{
         stage('Clean') {
 			steps {
-					sh 'mvn -B'
-					sh 'mvn clean'
+				sh 'mvn -B'
+				sh 'mvn clean'
 			}
         }
 		stage('Build & Test') {
-			sh 'mvn clean install'
+			steps {
+				sh 'mvn clean install'
+			}
 		}
 		stage('Deploy to test')	{
 			agent { docker 'openjdk:8-jdk-alpine' }		
 			steps {
-					sh 'java -version'
-					sh 'ls -a'
+				sh 'java -version'
+				sh 'ls -a'
 			}
 		}
     }
