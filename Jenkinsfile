@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy - Staging') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-		input : "Does the staging environment look ok?"
+		
             }
         }
     }
