@@ -15,7 +15,7 @@ pipeline {
 
     stage('Run') {
       steps {
-         sh 'ls -a'
+         sh 'mvn spring-boot:run'
       }
     }
 
