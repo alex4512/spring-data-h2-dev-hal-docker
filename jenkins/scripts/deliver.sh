@@ -23,8 +23,6 @@ set +x
 echo 'The following command runs and outputs the execution of your Java'
 echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
 set -x
-docker build -t springio/gs-spring-boot-docker .
+mvn com.google.cloud.tools:jib-maven-plugin:dockerBuild -Dimage=build -t springio/gs-spring-boot-docker .
 set +x
-set -x
-docker run -p 8091:8091 -t springio/gs-spring-boot-docker
-set +x
+
