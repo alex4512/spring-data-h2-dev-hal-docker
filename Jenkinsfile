@@ -7,13 +7,20 @@ pipeline {
     }
 	stages
 	{
-        stage('Build ') {
-            agent { dockerfile true } 
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-                sh 'mvn -version'
-            }
+        stage('Clean') {
+			sh 'mvn -B'
+			sh 'mvn clean'
         }
+		stage('Build & Test') {
+			sh 'mvn clean install'
+		}
+		stage('Deploy to test')	{
+			agent { docker 'openjdk:8-jdk-alpine' }		
+			steps
+				{
+					sh 'java -version'
+					sh 'ls -a'
+				}
+		}
     }
 }
